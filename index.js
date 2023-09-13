@@ -1,9 +1,10 @@
 var counterContainer = document.querySelector(".counter");
 var visitCount;
+var endpointURL = "https://i5adr8tf3e.execute-api.us-east-1.amazonaws.com/";
 // console.log(visitCount);
 
-// fetch("https://rqtynea0lg.execute-api.us-east-1.amazonaws.com/items")
-fetch("http://127.0.0.1:3000/items")
+fetch(endpointURL + "/items")
+  // fetch("http://127.0.0.1:3000/items")
   .then(function (response) {
     // The API call was successful!
     if (response.ok) {
@@ -16,8 +17,10 @@ fetch("http://127.0.0.1:3000/items")
   })
   .then(function (data) {
     // This is the JSON from our response
-    console.log(data[0].count);
-    visitCount = data[0].count;
+    // console.log(data);
+    // console.log(data[0].count);
+    // visitCount = data[0].count;
+    visitCount = typeof data[0] === "undefined" ? undefined : data[0].count;
     if (
       !visitCount ||
       visitCount == NaN ||
@@ -31,8 +34,8 @@ fetch("http://127.0.0.1:3000/items")
       // console.log(visitCount);
 
       //Add entry for key="page_view"
-      // fetch("https://rqtynea0lg.execute-api.us-east-1.amazonaws.com/items", {
-      fetch("http://127.0.0.1:3000/items", {
+      fetch(endpointURL + "/items", {
+        // fetch("http://127.0.0.1:3000/items", {
         method: "PUT",
         body: body1,
       })
@@ -53,7 +56,7 @@ fetch("http://127.0.0.1:3000/items")
           console.warn("Something went wrong in if.", err);
         });
     } else {
-      // console.log("1==", visitCount);
+      console.log("1==", visitCount);
       visitCount = Number(visitCount) + 1;
       var body1 = JSON.stringify({
         count: visitCount,
@@ -61,8 +64,8 @@ fetch("http://127.0.0.1:3000/items")
       // console.log(visitCount);
 
       //Add entry for key="page_view"
-      // fetch("https://rqtynea0lg.execute-api.us-east-1.amazonaws.com/items", {
-      fetch("http://127.0.0.1:3000/items", {
+      fetch(endpointURL + "/items", {
+        // fetch("http://127.0.0.1:3000/items", {
         method: "PUT",
         body: body1,
       })
