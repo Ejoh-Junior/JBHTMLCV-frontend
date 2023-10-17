@@ -1,6 +1,6 @@
 var counterContainer = document.querySelector(".counter");
 var visitCount;
-var endpointURL = "https://i5adr8tf3e.execute-api.us-east-1.amazonaws.com/";
+var endpointURL = "https://1hv5m7ig0j.execute-api.us-east-1.amazonaws.com/";
 // console.log(visitCount);
 
 fetch(endpointURL + "/items")
